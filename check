@@ -1,0 +1,24 @@
+#!/bin/bash
+
+check() {
+  service::config SERVICE_GOGS_COMPANY text
+  service::config SERVICE_GOGS_ROOT_URL text
+  service::config SERVICE_GOGS_SECRET_KEY text "Input SERVICE_GOGS_SECRET_KEY:" $(os::uuid)
+
+  service::config SERVICE_GOGS_MAIL_ENABLE yesno
+  if [ "$SERVICE_GIT_MAIL_ENABLE" = "true" ]; then
+    service::config SERVICE_GOGS_MAIL_HOST text
+    service::config SERVICE_GOGS_MAIL_PORT text
+    service::config SERVICE_GOGS_MAIL_USERNAME text
+    service::config SERVICE_GOGS_MAIL_PASSWORD text
+  fi
+
+  service::config SERVICE_GOGS_OAUTH2_ENABLE yesno
+  if [ "$SERVICE_GIT_OAUTH2_ENABLE" = "true" ]; then
+    service::config SERVICE_GOGS_OAUTH2_SERVER_URL text
+    service::config SERVICE_GOGS_OAUTH2_CLIENT_ID text
+    service::config SERVICE_GOGS_OAUTH2_CLIENT_SECRET text
+  fi
+}
+
+check $@
