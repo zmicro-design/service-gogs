@@ -1,0 +1,3 @@
+NAME=gogs
+VERSION=v1.0.0
+DESCRIPTION="Gogs Service"
